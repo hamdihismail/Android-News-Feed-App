@@ -34,12 +34,12 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRVCategories"
+        android:id="@+id/idRVFavourites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/idToolbar"
-        tools:listitem="@layout/categories_rv_item"
+        tools:listitem="@layout/favourites_rv_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
@@ -47,7 +47,7 @@
         android:id="@+id/idLVNews"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/idRVCategories"
+        android:layout_below="@+id/idRVFavourites"
         android:layout_marginTop="5dp"
         tools:listitem="@layout/news_lv_item"
         />

@@ -1,14 +1,16 @@
 package com.example.final_project;
 
-public class Item {
+import android.database.Cursor;
+
+public class FavouriteRVModal {
     private String title;
-    private String description;
-
+    private String favouriteMedia;
     private String date;
-    private String link;
-    private String media;
 
+    private String description;
+    private String link;
     private int id;
+
     public int getId() {
         return id;
     }
@@ -38,6 +40,26 @@ public class Item {
         this.date = date;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+        setId(link);
+    }
+
+
+    public FavouriteRVModal(Cursor cursor) {
+    }
 
     public String getTitle() {
         return title;
@@ -47,38 +69,19 @@ public class Item {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getFavouriteMedia() {
+        return favouriteMedia;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setFavouriteMedia(String favouriteMedia) {
+        this.favouriteMedia = favouriteMedia;
     }
 
-    public String getLink() { return link; }
-
-    public void setLink(String link) {
-
-        this.link = link;
-        setId(link);
-    }
-
-    public String getMedia() {
-        return media;
-    }
-
-    public void setMedia(String media) {
-        this.media = media;
-    }
-
-
-
-    public Item(String title, String description, String date, String link, String media) {
+    public FavouriteRVModal(String title, String favouriteMedia, String date, String description, String link) {
         this.title = title;
-        this.description = description;
+        this.favouriteMedia = favouriteMedia;
         this.date = date;
+        this.description = description;
         setLink(link);
-        this.media = media;
     }
-    public Item(){}
 }
