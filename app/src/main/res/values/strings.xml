@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Final_project</string>
+    <string name="app">News App</string>
+    <string name="read">Read Article</string>
+    <string name="favourites">Favourites</string>
+    <string name="dialogClose">Close</string>
+    <string name="dialogHelpTitle">Help</string>
+    <string name="mainHelpDialog">Welcome to News App! The top horizontal row is your Favourites and the vertical row below is a list of news articles. You can add to your favourites by selecting a news article and selecting the star icon.</string>
+    <string name="detailsHelpDialog">Welcome to News Detail Page! Here, you will find more details about the news article you have selected. You can add or remove from your favourites list by selecting the star icon. If you would like to read the full article, simply select Read Article.</string>
+    <string name="mainNoFavDialog">Your Favourites list is empty. You can add to your favourites by selecting a news article and selecting the star icon.</string>
+    <string name="detailsSavedToast">Saved to Favourites</string>
+    <string name="detailsRemovedToast">Removed from favourites list</string>
+    <string name="datePublished">Date Published: %1$s</string>
 </resources>

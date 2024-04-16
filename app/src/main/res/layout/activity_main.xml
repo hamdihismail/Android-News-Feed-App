@@ -17,10 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+            <ImageButton
+                android:id="@+id/idLVHelp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:src="@android:drawable/ic_menu_help"
+                android:background="#00ffffff"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="News App"
+                android:text="@string/app"
+                android:textSize="40dp"
                 android:textColor="@color/yellow"
                 android:textAlignment="center"
                 android:padding="40dp"

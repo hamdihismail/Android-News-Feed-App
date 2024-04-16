@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     private TextView tvTitle,tvDesc,tvDate;
     private ImageView ivMedia;
     private Button readBtn;
-    private ImageButton favBtn;
+    private ImageButton favBtn,help;
 //    private File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS+"/FavNews");
     private FavDB db;
     Context context;
@@ -38,9 +39,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
 
-//        if(!path.exists()) {
-//            path.mkdirs();
-//        }
+        db = new FavDB(NewsDetailActivity.this);
 
         title = getIntent().getStringExtra("title");
         desc = getIntent().getStringExtra("desc");
@@ -54,10 +53,33 @@ public class NewsDetailActivity extends AppCompatActivity {
         ivMedia = findViewById(R.id.idIVNews);
         readBtn = findViewById(R.id.idBtnRead);
         favBtn = findViewById(R.id.idBtnFav);
+        help = findViewById(R.id.idLVHelp);
+        Cursor results = db.check_fav_status(id);
+        int favStatusIndex = results.getColumnIndex(FavDB.FAVOURITE_STATUS);
+        while(results.moveToNext()){
+            System.out.println("Check fav status: "+results.getInt(favStatusIndex));
+            int favStatus = results.getInt(favStatusIndex);
+            if(favStatus==1){
+                favBtn.setImageResource(android.R.drawable.btn_star_big_on);
+            }
+        }
         tvTitle.setText(title);
         tvDesc.setText(desc);
-        tvDate.setText("Date Published: "+date);
+//        String published = NewsDetailActivity.getString(R.string.datePublished,date);
+        tvDate.setText(getString(R.string.datePublished,date));
         Picasso.get().load(media).into(ivMedia);
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewsDetailActivity.this);
+                alertDialogBuilder.setTitle(R.string.dialogHelpTitle)
+                        .setMessage(R.string.detailsHelpDialog)
+                        .setPositiveButton(R.string.dialogClose, (click, arg) -> {
+                            recreate();
+                        }).create().show();
+            }
+        });
         readBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +100,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                         db.insertIntoDB(title,desc,date,media,link,"1",id);
                         db.remove_fav(666);
                         favBtn.setImageResource(android.R.drawable.btn_star_big_on);
-                        Toast.makeText(NewsDetailActivity.this, "Saved to Favourites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NewsDetailActivity.this, R.string.detailsSavedToast, Toast.LENGTH_SHORT).show();
                         Thread.sleep(30);
                         Intent i = new Intent(NewsDetailActivity.this, MainActivity.class);
                         finish();
@@ -88,7 +110,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
                 }catch (SQLiteConstraintException e){
                     e.printStackTrace();
-                    Toast.makeText(NewsDetailActivity.this, "Removed from favourites list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewsDetailActivity.this, R.string.detailsRemovedToast, Toast.LENGTH_SHORT).show();
                     db.remove_row(id);
                     favBtn.setImageResource(android.R.drawable.btn_star_big_off);
                     System.out.println("Fav DB count from Detail Catch: "+db.select_all_fav_list().getCount());

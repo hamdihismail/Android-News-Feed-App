@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app">Application d\'actualités</string>
+    <string name="read">Lire l\'article</string>
+    <string name="favourites">Favoris</string>
+    <string name="dialogClose">Fermer</string>
+    <string name="dialogHelpTitle">Aide</string>
+    <string name="mainHelpDialog">Bienvenue sur l\'application Actualités ! La ligne horizontale supérieure correspond à vos favoris et la ligne verticale ci-dessous est une liste d\'articles d\'actualité. Vous pouvez l\'ajouter à vos favoris en sélectionnant un article d\'actualité et en sélectionnant l\'icône étoile.</string>
+    <string name="detailsHelpDialog">Bienvenue sur la page détaillée des actualités ! Ici, vous trouverez plus de détails sur l\'article d\'actualité que vous avez sélectionné. Vous pouvez ajouter ou supprimer de votre liste de favoris en sélectionnant l\'icône étoile. Si vous souhaitez lire l’article complet, sélectionnez simplement Lire l’article.</string>
+    <string name="mainNoFavDialog">Votre liste de favoris est vide. Vous pouvez l\'ajouter à vos favoris en sélectionnant un article d\'actualité et en sélectionnant l\'icône étoile.</string>
+    <string name="detailsSavedToast">Enregistré dans les favoris</string>
+    <string name="detailsRemovedToast">Supprimé de la liste des favoris</string>
+    <string name="datePublished">Date publiée: %1$s</string>
+</resources>

@@ -13,7 +13,14 @@
         android:layout_height="wrap_content"
         android:background="@color/black_shade_1"
         app:titleTextColor="@color/yellow"
-        app:title="News App"/>
+        app:title="@string/app"/>
+    <ImageButton
+        android:id="@+id/idLVHelp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_menu_help"
+        android:background="#00ffffff"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -75,7 +82,7 @@
         android:id="@+id/idBtnRead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Read Article"
+        android:text="@string/read"
         android:backgroundTint="@color/yellow"
         android:textAllCaps="false"
         android:layout_marginStart="20dp"

@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -36,11 +37,13 @@ public class MainActivity extends AppCompatActivity implements FavouriteRVAdapte
     private FavouriteRVAdapter favouriteRVAdapter;
     private NewsLVAdapter newsLVAdapter;
     private FavDB db;
+    private ImageButton help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        help = findViewById(R.id.idLVHelp);
         newsLV = findViewById(R.id.idLVNews);
         favRV = findViewById(R.id.idRVFavourites);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -57,6 +60,18 @@ public class MainActivity extends AppCompatActivity implements FavouriteRVAdapte
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setTitle(R.string.dialogHelpTitle)
+                        .setMessage(R.string.mainHelpDialog)
+                        .setPositiveButton(R.string.dialogClose, (click, arg) -> {
+                            recreate();
+                        }).create().show();
+            }
+        });
         newsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -104,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements FavouriteRVAdapte
 //            TextView tvFav = findViewById(R.id.idTVFav);
 //            ImageView ivFav = findViewById(R.id.idIVFav);
 
-        favouriteRVModalArrayList.add(new FavouriteRVModal("Favourites",null, null, null, null));
+        favouriteRVModalArrayList.add(new FavouriteRVModal(MainActivity.this.getString(R.string.favourites),null, null, null, null));
 //        favouriteRVModalArrayList.add(new FavouriteRVModal("Boom times for US green energy as federal cash flows in","https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/4C54/production/_133104591_avnos_getty.jpg"));
         }
         favouriteRVAdapter.notifyDataSetChanged();
@@ -134,9 +149,9 @@ public class MainActivity extends AppCompatActivity implements FavouriteRVAdapte
             startActivity(i);
         }else{
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-            alertDialogBuilder.setTitle("Favourites")
-                    .setMessage("Your Favourites list is empty. You can add to your favourites by selecting a news article and selecting the star icon")
-                    .setPositiveButton("Close", (click, arg) -> {
+            alertDialogBuilder.setTitle(R.string.favourites)
+                    .setMessage(R.string.mainNoFavDialog)
+                    .setPositiveButton(R.string.dialogClose, (click, arg) -> {
                         recreate();
                     }).create().show();
         }

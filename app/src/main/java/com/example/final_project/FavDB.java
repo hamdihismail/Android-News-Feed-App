@@ -98,6 +98,12 @@ public class FavDB extends SQLiteOpenHelper {
         return db.rawQuery(sql,null,null);
     }
 
+    //    checks fav status
+    public Cursor check_fav_status(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT "+FAVOURITE_STATUS+" FROM "+TABLE_NAME+" WHERE "+ KEY_ID+"="+id+"";
+        return db.rawQuery(sql,null,null);
+    }
     public void deleteTable() {
 
         // on below line we are creating
