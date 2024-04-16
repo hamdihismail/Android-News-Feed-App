@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/idIVCategory"
+            android:id="@+id/idIVFav"
             android:src="@color/yellow"
             android:scaleType="centerCrop"/>
 
@@ -23,12 +23,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_centerInParent="true"
-            android:text="Category"
+            android:text="Favourite"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:padding="3dp"
             android:textStyle="bold"
-            android:id="@+id/idTVCategory"/>
+            android:id="@+id/idTVFav"/>
 
     </RelativeLayout>
 
